@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculo do IMC</title>
+    <style>
+        html, body{
+            padding: 0;
+            margin: 0;
+
+        }
+        body {
+            background-color: rgb(165, 167, 167);
+        }
+        .tudo{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+        };
+        .tudo h2 {
+            margin-top: 0;
+        }
+        .tudo #resultado-imc {
+            max-width: 100vw;
+            width:150px;
+            height: 50px;
+            border-radius: 10px;
+            display: inline-block;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class ="tudo">
+    <h2>Calculadora de IMC</h2><br><br>
+    <input type="text" id="peso" name="peso" required placeholder="Peso (em kg)">
+    <input type="text" id="altura" name="altura" required placeholder="Altura (em metros)">
+
+    <button onclick="calcularimc()">Calcular</button><br><br>
+    <h2>Resultado:</h2><br><br>
+    <div id="resultado-imc"></div>
+    </div>
+    <script>
+        function calcularimc(){
+            var peso = document.getElementById('peso').value;
+            var altura = document.getElementById('altura').value;
+            var imc = peso / (altura * altura)
+            var resultado = imc.toFixed(1)
+            var divResultado = document.getElementById('resultado-imc')
+
+            divResultado.innerText = resultado
+            if(peso == "" && altura == ""){
+                alert("Os campos de peso e altura são obrigatórios!")
+                divResultado.style.backgroundColor = '#ff0000'
+            }
+
+            if (imc < 18.5) {
+            divResultado.style.backgroundColor = '#9C27B0'; 
+            } else if (imc >= 18.5 && imc < 25) {
+            divResultado.style.backgroundColor = '#4CAF50'; 
+            } else if (imc >= 25 && imc < 30) {
+            divResultado.style.backgroundColor = '#FFC107'; 
+            } else if (imc >= 30 && imc < 35) {
+            divResultado.style.backgroundColor = '#FF9800'; 
+            } else if (imc >= 35 && imc < 40) {
+            divResultado.style.backgroundColor = '#FF5722'; 
+            } else {
+            divResultado.style.backgroundColor = '#FF0000'; 
+            }
+    }
+        
+    </script>
+</body>
+</html>
